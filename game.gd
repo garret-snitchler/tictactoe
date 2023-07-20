@@ -74,3 +74,7 @@ func _on_button_bottom_right_pressed():
 
 func _on_reset_button_pressed():
 	_reset_board()
+
+
+func _on_start_button_pressed():
+	get_tree().change_scene_to_file("res://board.tscn")
