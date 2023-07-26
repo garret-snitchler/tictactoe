@@ -100,4 +100,15 @@ offset_bottom = 896.0
 theme_override_font_sizes/font_size = 50
 text = "START"
 
+[node name="ItemList" type="ItemList" parent="."]
+offset_left = 256.0
+offset_top = 640.0
+offset_right = 512.0
+offset_bottom = 768.0
+allow_search = false
+item_count = 2
+item_0/text = "X First"
+item_1/text = "O first"
+
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
