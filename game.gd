@@ -3,13 +3,13 @@ extends Node2D
 var spaces_full
 var initial_children_count
 
-# https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
-# Need to use this info to preserve current turn between scenes
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_get_starting_turn(GlobalVariables.starting_turn_index)
 	spaces_full = [[false, false, false], [false, false, false], [false, false, false]]
 	initial_children_count = self.get_child_count()
+	
+
 
 # Function that, depending on current turn, places a symbol in the location of the button pressed
 func _board_clicked(x, y):
@@ -25,6 +25,8 @@ func _board_clicked(x, y):
 	self.add_child(spr)
 	spaces_full[x][y] = true
 	GlobalVariables.is_x_turn = !GlobalVariables.is_x_turn
+	_adjust_turn_label()
+
 
 func _reset_board(): # Resets board and game to initial state
 	spaces_full = [[false, false, false], [false, false, false], [false, false, false]]
@@ -35,17 +37,22 @@ func _reset_board(): # Resets board and game to initial state
 			self.remove_child(self.get_child(-1))
 			i += 1
 	_get_starting_turn(GlobalVariables.starting_turn_index)
-	
-	
-			
-func _get_starting_turn(index):
+
+
+func _get_starting_turn(index): # When called, uses passed index to adjust global turn variable
 	if index == 0: # X first
-		print('is THIS called')
 		GlobalVariables.is_x_turn = true
-	else:
+	else: # O first/nothing 
 		GlobalVariables.is_x_turn = false
-	
-	
+	_adjust_turn_label()
+
+
+func _adjust_turn_label():
+	if GlobalVariables.is_x_turn:
+		get_node("Turn Label").text = 'X\'s Turn'
+	else:
+		get_node("Turn Label").text = 'O\'s Turn'
+
 
 # Calls for each button
 func _on_button_top_left_pressed():
@@ -86,12 +93,3 @@ func _on_button_bottom_right_pressed():
 
 func _on_reset_button_pressed():
 	_reset_board()
-
-
-func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://board.tscn")
-
-
-func _on_item_list_item_clicked(index, at_position, mouse_button_index):
-	GlobalVariables.starting_turn_index = index
-	_get_starting_turn(index)

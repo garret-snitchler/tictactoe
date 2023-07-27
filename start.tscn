@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c3g5ifsbhsowt"]
 
+[ext_resource type="Script" path="res://start.gd" id="1_boa1w"]
 [ext_resource type="Texture2D" uid="uid://fuo5qxomfxe5" path="res://assets/White.png" id="1_prya1"]
-[ext_resource type="Script" path="res://game.gd" id="1_urd8c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gnd6k"]
 texture = ExtResource("1_prya1")
@@ -74,7 +74,7 @@ texture = ExtResource("1_prya1")
 sources/0 = SubResource("TileSetAtlasSource_gnd6k")
 
 [node name="start" type="Node2D"]
-script = ExtResource("1_urd8c")
+script = ExtResource("1_boa1w")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ffccv")
@@ -100,7 +100,7 @@ offset_bottom = 896.0
 theme_override_font_sizes/font_size = 50
 text = "START"
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="TurnOrderOptions" type="ItemList" parent="."]
 offset_left = 256.0
 offset_top = 640.0
 offset_right = 512.0
@@ -111,4 +111,4 @@ item_0/text = "X First"
 item_1/text = "O first"
 
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
-[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]
+[connection signal="item_selected" from="TurnOrderOptions" to="." method="_on_turn_order_options_item_selected"]
