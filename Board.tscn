@@ -290,8 +290,15 @@ offset_left = 896.0
 offset_top = 1024.0
 offset_right = 1024.0
 offset_bottom = 1152.0
-text = "Reset 
-Board"
+theme_override_font_sizes/font_size = 32
+text = "Reset"
+
+[node name="Turn Label" type="Label" parent="."]
+offset_top = 1024.0
+offset_right = 512.0
+offset_bottom = 1152.0
+theme_override_font_sizes/font_size = 32
+text = "Current Turn:"
 
 [connection signal="pressed" from="Button Top Left" to="." method="_on_button_top_left_pressed"]
 [connection signal="pressed" from="Button Top Center" to="." method="_on_button_top_center_pressed"]
