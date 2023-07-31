@@ -30,7 +30,7 @@ func _board_clicked(x, y):
 	spr.position.y = 384*y + 128
 	self.add_child(spr)
 	space_values[x][y] = current_space_value
-	has_won = _check_victory()
+	_check_victory()
 	GlobalVariables.is_x_turn = !GlobalVariables.is_x_turn
 	if !has_won:
 		_adjust_turn_label()
@@ -43,13 +43,10 @@ func _check_victory(): # Check to see if the current player just won the game
 	else:
 		current_player_variable = 2
 	var i = 0
-	while i < 3 && !has_won: # check all rows
+	while i < 3 && !has_won: # check rows & columns
 		if space_values[i][0] == current_player_variable && space_values[i][1] == current_player_variable && space_values[i][2] == current_player_variable:
 			has_won = true
-		i += 1
-	i = 0
-	while i < 3 && !has_won: # check all columns
-		if space_values[0][i] == current_player_variable && space_values[1][i] == current_player_variable && space_values[2][i] == current_player_variable:
+		elif space_values[0][i] == current_player_variable && space_values[1][i] == current_player_variable && space_values[2][i] == current_player_variable:
 			has_won = true
 		i += 1
 	if !has_won && space_values[1][1] == current_player_variable: # checking diagonals
@@ -62,7 +59,7 @@ func _check_victory(): # Check to see if the current player just won the game
 			get_node("Turn Label").text = 'X Wins!'
 		else:
 			get_node("Turn Label").text = 'O Wins!'
-	return has_won
+
 
 func _reset_board(): # Resets board and game to initial state
 	has_won = false
@@ -79,8 +76,10 @@ func _reset_board(): # Resets board and game to initial state
 func _get_starting_turn(index): # When called, uses passed index to adjust global turn variable
 	if index == 0: # X first
 		GlobalVariables.is_x_turn = true
-	else: # O first/nothing 
+	elif index == 1: # O first
 		GlobalVariables.is_x_turn = false
+	elif index == 2: # Random
+		GlobalVariables.is_x_turn = randi() % 2 == 0
 	_adjust_turn_label()
 
 
