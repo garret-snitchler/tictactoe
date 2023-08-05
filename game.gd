@@ -80,6 +80,9 @@ func _get_starting_turn(index): # When called, uses passed index to adjust globa
 		GlobalVariables.is_x_turn = false
 	elif index == 2: # Random
 		GlobalVariables.is_x_turn = randi() % 2 == 0
+	else:
+		GlobalVariables.alternating_turn = !GlobalVariables.alternating_turn
+		GlobalVariables.is_x_turn = GlobalVariables.alternating_turn
 	_adjust_turn_label()
 
 

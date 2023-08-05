@@ -5,3 +5,4 @@ extends Node
 
 var is_x_turn
 var starting_turn_index
+var alternating_turn

@@ -106,10 +106,11 @@ offset_top = 640.0
 offset_right = 512.0
 offset_bottom = 768.0
 allow_search = false
-item_count = 3
+item_count = 4
 item_0/text = "X First"
 item_1/text = "O first"
 item_2/text = "Random"
+item_3/text = "Alternating"
 
 [connection signal="pressed" from="Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="item_selected" from="TurnOrderOptions" to="." method="_on_turn_order_options_item_selected"]
