@@ -300,6 +300,15 @@ offset_bottom = 1152.0
 theme_override_font_sizes/font_size = 32
 text = "Current Turn:"
 
+[node name="Main Menu Button" type="Button" parent="."]
+offset_left = 768.0
+offset_top = 1024.0
+offset_right = 896.0
+offset_bottom = 1152.0
+theme_override_font_sizes/font_size = 32
+text = "Main 
+Menu"
+
 [connection signal="pressed" from="Button Top Left" to="." method="_on_button_top_left_pressed"]
 [connection signal="pressed" from="Button Top Center" to="." method="_on_button_top_center_pressed"]
 [connection signal="pressed" from="Button Top Right" to="." method="_on_button_top_right_pressed"]
@@ -310,3 +319,4 @@ text = "Current Turn:"
 [connection signal="pressed" from="Button Bottom Center" to="." method="_on_button_bottom_center_pressed"]
 [connection signal="pressed" from="Button Bottom Right" to="." method="_on_button_bottom_right_pressed"]
 [connection signal="pressed" from="Reset Button" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="Main Menu Button" to="." method="_on_main_menu_button_pressed"]
