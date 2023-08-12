@@ -17,3 +17,7 @@ func _on_start_button_pressed():
 
 func _on_turn_order_options_item_selected(index):
 	GlobalVariables.starting_turn_index = index
+
+
+func _on_quit_pressed():
+	get_tree().quit()
